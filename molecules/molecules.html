@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Organic Chemistry Simulator</title>
+        <link rel="stylesheet" type="text/css" href="a.css">
+        <link rel="stylesheet" type="text/css" href="w3.css">
+        <script src="lib/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
+        <script src="lib/threejs/three.min.js" type="text/javascript"></script>
+        <script src="lib/threejs/controls/TrackballControls.js" type="text/javascript"></script>
+        <script src="lib/threejs/stats.min.js" type="text/javascript"></script>
+        <script src="lib/dat.gui.min.js" type="text/javascript"></script>
+        <script src="ocs.js"></script>
+
+    </head>
+    <body>
+        <div>
+   <a href="../4Plane/4Plane.html" style="padding:0.5em 1.5em; background-color: blanchedalmond ; box-shadow: 2px 2px 5px chocolate; color: black; float: right; margin-right: 265px;">Next</a>
+ <a href="../atom/atom.html" style=" padding:0.5em 1.5em; background-color: blanchedalmond ; box-shadow: 2px 2px 5px chocolate; color: black;float: right; margin-right: 10px; ">Back</a>
+</div>
+<div class="w3-dropdown-click w3-left" style="width: 50%;">
+  <button onclick="guide()" class="w3-button w3-black" style="margin-left: 80px;">Instruction</button>
+  <div id="Demo" class="w3-dropdown-content w3-bar-block w3-card-4 w3-animate-zoom" style="padding: 10px; border: 2px solid yellow;">
+      <p style="color: black;text-align: center;"> This a molecule simulator. <br><br> You may:<br>
+             <b style="color: blue;"> Left click:</b> To create Hydrogen atom with bond<br>
+             <b style="color: red;">Right click/ shift + click:</b> To create Carbon atom with bond<br>
+             <b style="color: green;">Ctrl + click: </b> To delete atom <br><br>
+             There is also a GUI for you to alter the intermolecular forces on the top right corner of the page.<br> <br></p><p style="text-align: left;color: brown;">
+             <b style="text-align: left; color:brown;">Tips:</b> <br>
+             1.)Take note of the molecules display at the bottom-left corner, it will display the types of molecules you create.<br>
+             2.)One atom only can accept 4 bonds, therefore, if you wish to add Carbon atom, make sure that there is an bond available for it, if no, delete one Hydrogen atom.</p>
+</div>
+</div>
+<script>
+  function guide() {
+    var x= document.getElementById("Demo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+        <div id="instructions" style="text-align: center;color: #fafad2;">
+In your surrounding, you might have observed there are millions of objects, which are created out of matter and the matter comprises of molecules, which is a combination of two or more atoms bonded together. So, in short, atoms are grouped together to form a molecule, which embodies the objects around us.<br><br>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Atom</title>
+  <style >
+  .popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 100%;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+  </style>
+</head>
+<body>
+  <!-- <canvas id="container" width="800" height="600"></div> -->
+  <div id="button">
+    <a href="../molecules/molecules.html" style="padding:0.5em 1.5em; background-color: blanchedalmond ; box-shadow: 2px 2px 5px chocolate; color: black; float: right">Next</a>
+    <a href="../index.html" style="padding:0.5em 1.5em; background-color: blanchedalmond ; box-shadow: 2px 2px 5px chocolate; color: black; float: right">Back</a>
+  </div>
+
+  <div style="clear: right"></div>
+
+  <div id="explanation" style="float: right;width: 40%; padding: 10px">
+    <h1 style="color: crimson;font-size: 60px; text-align: center;">Atom</h1>
+    <h2 style="color: violet;">What is Atom?</h2>
+    <p>An atom is the smallest constituent unit of ordinary matter that constitutes a chemical element. Every solid, liquid, gas, and plasma is composed of neutral or ionized atoms. Atoms are extremely small; typical sizes are around 100 picometers.</p>
+    <h2 style="color: tomato;">Can we see atom?</h2>
+    <p>Atoms are extremely small measuring about 1 x 10-10 meters in diameter. Because of their small size, it's impossible to view them using a light microscope. However, a number of techniques have been developed to observe and study the structure of atoms.</p><br>
+    <h2 style="color: chocolate;"> <--- Screen beside is a simple atom with three electrons running according to their orbit.</h2><br>
+
+    <div class="popup" onclick="myFunction()"><u>Click me for info!</u>
+  <span class="popuptext" id="myPopup">This is a atom display animated with WebGL. You may use mouse control to alter the view: drag to change the viewpoint or scroll to zoom. </span>
+</div>
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+</script>
+  </div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.js"></script>
+<script type="text/javascript" src="OrbitControls.js"></script>
+<script type="text/javascript">
+
+// var container = document.querySelector( '.container' );
+
+// *** scene and camera ***
+// Create a three.js scene
+var scene = new THREE.Scene();
+
+// Add a camera so that we can see our 3D objects.
+// By moving our camera's z positioning, we can increase or decrease zoom.
+var aspectRatio = window.innerWidth / 2 / window.innerHeight;
+// var aspectRatio = container.clientWidth / container.clientHeight;
+var camera = new THREE.PerspectiveCamera(75, aspectRatio, 1, 10000);
+camera.position.z = 1000;
+// scene.add(camera);
+
+// *** renderer ***
+// A canvas renderer will generate the image, drawing our models on the screen.
+var renderer = new THREE.WebGLRenderer({antialias:true });
+// renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setSize(window.innerWidth / 2, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.BasicShadow;
+
+// This places the CanvasRenderer onto the body element in our HTML.
+document.body.appendChild(renderer.domElement);
+// container.appendChild( renderer.domElement );
+
+// Add controls
+var controls = new THREE.OrbitControls( camera, renderer.domElement );
+// controls = new THREE.OrbitControls( camera, container );
+controls.addEventListener('change', renderer);
+controls.minDistance = 10;
+controls.maxDistance = 2000;
+
+
+// Floor
+const geometry = new THREE.PlaneGeometry( 10000, 5000, 1, 1 );
+const texture = new THREE.TextureLoader().load( 'metalTexture.jpg');
+var material = new THREE.MeshPhongMaterial( { 
+  map: texture
+  // opacity: 0.5,
+  // metalness: 0.8,  
+} );
+var floor = new THREE.Mesh( geometry, material );
+floor.material.side = THREE.DoubleSide;
+floor.rotation.x = 90;
+floor.position.y = -500;
+floor.receiveShadow = true;
+scene.add( floor ); 
+
+// Lighting
+scene.add( new THREE.HemisphereLight( 0x254386, 0x2EDDDD ) );
+var spotLight = new THREE.SpotLight( 0xffffff );
+spotLight.position.set( 0, 400, 400 );
+//spotLight.angle = Math.PI / 8;
+// spotLight.decay = 1;
+spotLight.distance = 2000;
+// spotLight.penumbra = 2.0;
+spotLight.shadow.camera.near=0.1;
+spotLight.shadow.camera.far=20;
+spotLight.castShadow = true;
+spotLight.receiveShadow = true;
+scene.add( spotLight );
+
+var ambientlight = new THREE.AmbientLight( 0x404040 );
+scene.add( ambientlight );
+
+// *** objects ***
+// Nucleus
+//                                  radius
+//                                    | width segments
+//                                    |    | height segments
+//                                    |    |   |
+//                                    v    v   v
+var shape = new THREE.SphereGeometry(100, 20, 20);
+var cover = new THREE.MeshNormalMaterial();
+var nucleus = new THREE.Mesh(shape, cover);
+nucleus.castShadow = true;
+nucleus.receiveShadow = true;
+scene.add(nucleus);
+
+// Electron 1
+var electronShape = new THREE.SphereGeometry(20, 20, 20);
+var electron1 = new THREE.Mesh(electronShape, cover);
+electron1.castShadow = true;
+electron1.receiveShadow = true;
+nucleus.add(electron1);
+// When we add our electron geometry to the nucleus, we can statically position objects. 
+// If the objects are dynamically moving, this has no effect.
+//                        x, y, z
+electron1.position.set(-150,150,0);
+
+// Electron 2
+var electron2 = new THREE.Mesh(electronShape, cover);
+nucleus.add(electron2);
+electron2.castShadow = true;
+electron2.receiveShadow = true;
+electron2.position.set(150,150,0);
+
+// Electron 3
+var electron3 = new THREE.Mesh(electronShape, cover);
+nucleus.add(electron3);
+electron3.castShadow = true;
+electron3.receiveShadow = true;
+electron3.position.set(0,0,150);
+
+
+// *** animation ***
+// Animate motion using a clock timer.
+var clock = new THREE.Clock();
+
+// This function will handle animation of our atom
+function animate() {
+  requestAnimationFrame(animate);
+
+  // This gives us a running timer for our orbiting electrons.
+  var t = clock.getElapsedTime();
+
+  // Display what the camera sees onto the browser screen.
+  renderer.render(scene, camera);
+
+  // orbit from bottom right to top left
+  //
+  //                            movement speed
+  //                               |
+  //                               |  orbit distance
+  //                               |      |
+  //                               v      v
+  electron1.position.x = Math.sin(5*t) * -150;
+  electron1.position.y = Math.sin(5*t) * 150;
+  electron1.position.z = Math.cos(5*t) * 150;
+
+  // orbit from top right to bottom left
+  electron2.position.x = Math.cos(5*t) * 150;
+  electron2.position.y = Math.cos(5*t) * 150;
+  electron2.position.z = Math.sin(5*t) * 150;
+
+  // Offset from our timer so the electrons don't smash into each other.
+  var tOffset = 1.5 + clock.getElapsedTime();
+
+  // orbit from the bottom to the top
+  electron3.position.x = Math.sin(5*tOffset) * 0;
+  electron3.position.y = Math.sin(5*tOffset) * 150;
+  electron3.position.z = Math.cos(5*tOffset) * 150;
+}
+
+function onWindowResize() {
+  // Camera frustum aspect ratio
+  camera.aspect = window.innerWidth / 2 / window.innerHeight;
+  // camera.aspect = container.clientWidth / container.clientHeight;
+  // After making changes to aspect
+  camera.updateProjectionMatrix();
+  // Reset size
+  renderer.setSize(window.innerWidth / 2, window.innerHeight);
+  // renderer.setSize( container.clientWidth, container.clientHeight );
+}
+
+window.addEventListener('resize', onWindowResize, false);
+
+// Run the animation.
+animate();
+
+</script>
+
+</html>

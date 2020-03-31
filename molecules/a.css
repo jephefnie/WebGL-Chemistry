@@ -1,0 +1,17 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+#instructions {
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 100px;
+    left: 10px;
+    color: white;
+    font-family: courier;
+}
+canvas {
+    display: block;
+}

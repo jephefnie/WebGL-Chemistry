@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Loading..</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" type="text/css" href="css/game.css" />
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,700italic' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+  <div class="game-holder" id="gameHolder">
+      <div class="header">
+        <h3>Tired of learning? You need <b>Energy!</b></h3>
+        <h4>Collide with the red box to gain energy before you can enter the next page! :)</h4>
+        <div class="score" id="score">
+          <div class="score__content" id="level">
+            <div class="score__label">level</div>
+            <div class="score__value score__value--level" id="levelValue">1</div>
+            <svg class="level-circle" id="levelCircle" viewbox="0 0 200 200">
+              <circle id="levelCircleStroke" r="80" cx="100" cy="100" fill="none" #f25346 stroke="#68c3c0" stroke-width="14px" stroke-dasharray="502" />
+            </svg>
+          </div>
+          <div class="score__content" id="dist">
+            <div class="score__label">distance</div>
+            <div class="score__value score__value--dist" id="distValue">000</div>
+          </div>
+          <div class="score__content" id="energy">
+            <div class="score__label">energy</div>
+            <div class="score__value score__value--energy" id="energyValue">
+              <div class="energy-bar" id="energyBar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="world" id="world"></div>
+    </div>
+</div>
+
+<!-- <div id="versions">
+	<a href="https://codepen.io/paulstamp/pen/NRLKRb" target="_blank" class="url-highlighted">Canvas </a><a href="https://codepen.io/paulstamp/pen/qayZKY" target="_blank" class="url-normal">| CSS</a>
+</div> -->
+
+<!-- <div id="link">
+	<a class="img-url" href="https://www.nonatomic.co.uk">
+		<img id="small-logo" src="http://testomic.com/public/codepen-assets/logo-small.svg" alt="Nonatomic logo small">
+		</a>
+	<a class="url" href="https://www.nonatomic.co.uk">Visit Nonatomic Games</a>
+</div> -->
+
+
+<!-- Rounded switch -->
+<label class="daySwitch switch">
+	<p>Day</p>
+  <input id="dayToggle" type="checkbox">
+  <div class="slider round"></div>
+</label>
+
+<label class="movingSwitch switch">
+	<p>Auto</p>
+  <input id="movingToggle" type="checkbox">
+  <div class="slider round"></div>
+</label>
+
+<label class="colorSwitch switch">
+	<p>Spring</p>
+  <input id="colorToggle" type="checkbox">
+  <div class="slider round"></div>
+</label>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.0.3/pixi.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script>
+<script  src="./script.js"></script>
+<script type="text/javascript" src="js/three.min.js"></script>
+<!-- <script type="text/javascript" src="js/game.js"></script> -->
+
+</body>
+</html>

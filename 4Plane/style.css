@@ -1,0 +1,171 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #000000;
+}
+
+.container {
+	position: absolute;
+	display: block;
+	height: 100%;
+	width:100%;
+}
+
+
+/**	
+* Nonatomic Branding
+*/
+#link{
+	font-family: 'Roboto', sans-serif;
+	position: fixed;
+	bottom: 24px;
+	width: 100%;
+	text-align: center;
+}
+
+.img-url{
+	text-decoration: none;
+}
+
+.url{
+	opacity: 0.5;
+	text-decoration: none;
+}
+
+a:link {
+	color: white;
+}
+
+a:visited{
+	color: white;
+}
+
+a:hover{
+	color: purple;
+}
+
+a:active{
+	color: white;
+}
+
+#small-logo{
+	width: 30px;
+	transform: translate(-10px, 12px);
+	opacity:1;
+}
+
+
+/**
+* Versions
+*/
+#versions{
+	font-family: 'Roboto', sans-serif;
+	position: fixed;
+	top: 5%;
+	width: 100%;
+	text-align: center;
+}
+
+.url-highlighted{
+	opacity: 1;
+	text-decoration: none;
+}
+
+.url-normal{
+	opacity: 0.5;
+	text-decoration: none;
+}
+
+
+/**
+* Toggle
+*/
+
+/* The switch - the box around the slider */
+.daySwitch {
+  position: absolute;
+  width: 60px;
+  height: 34px;
+	bottom:24px;
+	left:24px;
+}
+
+.movingSwitch {
+  position: absolute;
+  width: 60px;
+  height: 34px;
+	bottom:24px;
+	left:104px;
+}
+
+.colorSwitch {
+  position: absolute;
+  width: 60px;
+  height: 34px;
+	bottom:24px;
+	left:184px;
+}
+
+.switch p{
+	position:absolute;
+	font-family: 'Roboto', sans-serif;
+	bottom:22px;
+	color:white;
+	opacity:0.6;
+	text-align:center;
+	width:100%;
+	conent:"Day";
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+	display:none;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #c43d4d;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+/*   background-color: #5c145d; */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
